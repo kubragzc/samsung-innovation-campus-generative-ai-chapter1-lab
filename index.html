@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kübra Gezici — Makine Mühendisi | Yapay Zeka. Geleneksel mühendisliği yapay zeka ile buluşturan mühendis.">
+  <title>Kübra Gezici | Makine Mühendisi &amp; Yapay Zeka</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============ TEMEL ============ */
+    :root {
+      --lacivert: #0A1F44;
+      --lacivert-koyu: #061530;
+      --mavi: #1E6FEB;
+      --mavi-acik: #4DA3FF;
+      --turuncu: #F2A65A;
+      --beyaz: #FFFFFF;
+      --zemin: #F7F9FC;
+      --metin: #2B3A55;
+      --metin-soluk: #64748B;
+      --radius: 16px;
+      --golge: 0 12px 40px rgba(10, 31, 68, 0.10);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--metin);
+      background: var(--beyaz);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    /* ============ NAVİGASYON ============ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10, 31, 68, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: box-shadow 0.3s ease;
+    }
+    .nav.scrolled { box-shadow: 0 4px 24px rgba(6, 21, 48, 0.35); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      color: var(--beyaz);
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--turuncu); }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+    .nav-links a:hover {
+      color: var(--beyaz);
+      background: rgba(77, 163, 255, 0.18);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--beyaz);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ============ HERO ============ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(ellipse 80% 60% at 75% 20%, rgba(30, 111, 235, 0.35), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 15% 85%, rgba(242, 166, 90, 0.14), transparent 60%),
+        linear-gradient(160deg, var(--lacivert-koyu) 0%, var(--lacivert) 55%, #0E2A5C 100%);
+      color: var(--beyaz);
+      padding: 110px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* İnce devre/ağ deseni hissi için nokta ızgarası */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(77, 163, 255, 0.18) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 780px;
+    }
+
+    .hero-etiket {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--turuncu);
+      border: 1px solid rgba(242, 166, 90, 0.45);
+      border-radius: 999px;
+      padding: 6px 16px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero .unvan {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 600;
+      color: var(--mavi-acik);
+      margin-bottom: 20px;
+    }
+    .hero .unvan .ayrac { color: var(--turuncu); margin: 0 10px; }
+
+    .hero .slogan {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 620px;
+      margin-bottom: 40px;
+    }
+
+    .hero-butonlar { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 13px 28px;
+      border-radius: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-birincil {
+      background: linear-gradient(135deg, var(--mavi), var(--mavi-acik));
+      color: var(--beyaz);
+      box-shadow: 0 8px 24px rgba(30, 111, 235, 0.4);
+    }
+    .btn-ikincil {
+      color: var(--beyaz);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+    }
+    .btn-ikincil:hover { background: rgba(255, 255, 255, 0.08); }
+
+    .hero-asagi {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 1.6rem;
+      text-decoration: none;
+      animation: sallan 2.4s ease-in-out infinite;
+    }
+    @keyframes sallan {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 8px); }
+    }
+
+    /* ============ BÖLÜMLER ============ */
+    .bolum { padding: 96px 0; }
+    .bolum:nth-of-type(even) { background: var(--zemin); }
+
+    .bolum-baslik {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .bolum-baslik .numara {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mavi);
+      margin-bottom: 10px;
+    }
+    .bolum-baslik h2 {
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--lacivert);
+      letter-spacing: -0.01em;
+    }
+    .bolum-baslik .cizgi {
+      width: 56px;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--mavi), var(--turuncu));
+      margin: 18px auto 0;
+    }
+
+    .bolum-gorsel {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--golge);
+      margin-bottom: 44px;
+    }
+    .bolum-gorsel img {
+      width: 100%;
+      aspect-ratio: 16 / 8;
+      object-fit: cover;
+    }
+
+    .bolum-metin {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.06rem;
+      color: var(--metin);
+    }
+
+    /* ============ FADE-IN ANİMASYONU ============ */
+    .gizli {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .gorunur {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .gizli { opacity: 1; transform: none; transition: none; }
+      .hero-asagi { animation: none; }
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: linear-gradient(160deg, var(--lacivert-koyu), var(--lacivert));
+      color: var(--beyaz);
+      padding: 72px 0 32px;
+      text-align: center;
+    }
+    .footer h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .footer p {
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+
+    .footer-linkler {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--beyaz);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 13px 26px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .footer-link:hover {
+      transform: translateY(-2px);
+      background: rgba(77, 163, 255, 0.15);
+      border-color: var(--mavi-acik);
+    }
+    .footer-link svg { width: 20px; height: 20px; fill: var(--turuncu); }
+
+    .footer-alt {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 24px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--lacivert-koyu);
+        padding: 12px 4%;
+        box-shadow: 0 12px 24px rgba(6, 21, 48, 0.4);
+        transform: translateY(-8px);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s;
+      }
+      .nav-links.acik {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .nav-links a { display: block; padding: 13px 14px; }
+
+      .bolum { padding: 64px 0; }
+      .bolum-gorsel img { aspect-ratio: 16 / 10; }
+      .hero { padding: 96px 0 72px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAVİGASYON ============ -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">Kübra<span>.</span>Gezici</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#ben-kimim">Ben Kimim</a></li>
+        <li><a href="#yeteneklerim">Yeteneklerim</a></li>
+        <li><a href="#gelecek-hedefim">Gelecek Hedefim</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-etiket">Mühendislik × Yapay Zeka</span>
+        <h1>Kübra Gezici</h1>
+        <p class="unvan">Makine Mühendisi <span class="ayrac">|</span> Yapay Zeka</p>
+        <p class="slogan">Geleneksel mühendislik problemlerini yapay zeka ile çözülebilir hale getiriyorum — aerodinamikten üretim hatlarına.</p>
+        <div class="hero-butonlar">
+          <a href="#ben-kimim" class="btn btn-birincil">Beni Tanıyın</a>
+          <a href="#iletisim" class="btn btn-ikincil">İletişime Geçin</a>
+        </div>
+      </div>
+    </div>
+    <a href="#ben-kimim" class="hero-asagi" aria-label="Aşağı kaydır">&#8595;</a>
+  </header>
+
+  <main>
+    <!-- ============ BÖLÜM 1: BEN KİMİM ============ -->
+    <section class="bolum" id="ben-kimim">
+      <div class="container">
+        <div class="bolum-baslik gizli">
+          <span class="numara">01</span>
+          <h2>Ben Kimim</h2>
+          <div class="cizgi"></div>
+        </div>
+        <div class="bolum-gorsel gizli">
+          <img src="images/me.jpg" alt="Üretim hattı ve yapay zeka ağları arasında köprü kuran mühendis illüstrasyonu">
+        </div>
+        <div class="bolum-metin gizli">
+          <p>Ben Kübra Gezici; makine mühendisliğinin köklü disiplinini yapay zekanın dönüştürücü gücüyle birleştiren, Düzce Üniversitesi mezunu bir mühendisim. Beni tanımlayan şey iki dünya arasında köprü kurabilmem: aerodinamikten üretim hatlarına uzanan geleneksel mühendislik problemlerini, derin öğrenme modelleriyle çözülebilir hale getiriyorum. TUSAŞ LIFT-UP programı araştırmacısı olarak, hedeflenen aerodinamik performansa göre kanat profili geometrisi üreten makine öğrenmesi tabanlı bir tersine tasarım sistemi geliştirdim. Aynı zamanda iki yılı aşkın süredir eğitmenlik yapıyorum — karmaşık teknik konuları anlaşılır kılmak, öğrenmeye olan açlığım kadar işimin de bir parçası.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BÖLÜM 2: YETENEKLERİM ============ -->
+    <section class="bolum" id="yeteneklerim">
+      <div class="container">
+        <div class="bolum-baslik gizli">
+          <span class="numara">02</span>
+          <h2>Yeteneklerim</h2>
+          <div class="cizgi"></div>
+        </div>
+        <div class="bolum-gorsel gizli">
+          <img src="images/skills.jpg" alt="CAD tasarımı, aerodinamik analiz ve yapay zeka modellerini bir araya getiren mühendislik araçları illüstrasyonu">
+        </div>
+        <div class="bolum-metin gizli">
+          <p>Fiziksel dünyayı modelleyip yapay zekayla optimize edebiliyorum: SolidWorks ve Siemens NX ile tasarladığım sistemleri ANSYS ve Simcenter ortamlarında analiz ediyor, PyTorch ve TensorFlow ile geliştirdiğim derin öğrenme modelleriyle bu süreçleri akıllı hale getiriyorum. Toyota Boshoku'daki stajımda bu yaklaşımı sahaya taşıdım: YOLO tabanlı gerçek zamanlı hata tespit sistemi "Jidoka 4.0"ı geliştirip FastAPI arayüzüyle tam operasyonel hale getirdim. Üretken yapay zeka (cWGAN-GP) ve fizik bilgili sinir ağları (PINN) gibi ileri yöntemleri gerçek mühendislik problemlerine uyguluyorum. Kodland'da verdiğim Python, makine öğrenmesi ve full-stack eğitimleri ise bana bir mühendisin en az kod kadar değerli becerisini kazandırdı: bilgiyi aktarabilmek. ABD'de geçirdiğim beş ay da bu iletişimi uluslararası bir zemine taşıdı.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BÖLÜM 3: GELECEK HEDEFİM ============ -->
+    <section class="bolum" id="gelecek-hedefim">
+      <div class="container">
+        <div class="bolum-baslik gizli">
+          <span class="numara">03</span>
+          <h2>Gelecek Hedefim</h2>
+          <div class="cizgi"></div>
+        </div>
+        <div class="bolum-gorsel gizli">
+          <img src="images/future.jpg" alt="Havacılık ve otonom araç teknolojilerine bakan mühendis illüstrasyonu">
+        </div>
+        <div class="bolum-metin gizli">
+          <p>Kısa vadede havacılık ve otomotiv sektörlerinde, aerodinamik tasarım ve otonom sistemlere yapay zeka entegrasyonu üzerine çalışan bir mühendis olarak yer almayı hedefliyorum. Bu hedefe hazırlanmak için eş zamanlı olarak kendimi geliştirmeye devam ediyorum: T.C. Sanayi ve Teknoloji Bakanlığı'nın Otonom Sürüş Teknolojileri Uzmanlık Programı'na 1000 katılımcı arasından seçilen ilk 120 kişiden biri olarak BAYKAR, TÜBİTAK BİLGEM, FORD ve ASELSAN modüllerinde eğitim alıyorum; Google Yapay Zeka ve Teknoloji Akademisi, Samsung Innovation Campus ve QSummer kuantum programlama programlarıyla da ufkumu genişletiyorum. Uzun vadeli vizyonum ise net: geleneksel mühendislik iş akışlarını yapay zeka ile dönüştüren projelere liderlik etmek ve bu dönüşümün Türkiye'deki öncülerinden biri olmak.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER / İLETİŞİM ============ -->
+  <footer class="footer" id="iletisim">
+    <div class="container">
+      <div class="gizli">
+        <h2>İletişime Geçin</h2>
+        <p>Havacılık, otomotiv ve teknoloji alanındaki fırsatlar için benimle iletişime geçebilirsiniz.</p>
+        <div class="footer-linkler">
+          <a href="mailto:kubragezici02@gmail.com" class="footer-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5.01-8-5.01V6.3l8 5.01 8-5.01v1.94z"/></svg>
+            kubragezici02@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/kubragezici" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V10.2H5.67v8.14h2.67zM7 9.09a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zm11.34 9.25v-4.46c0-2.39-1.28-3.5-2.98-3.5-1.37 0-1.99.76-2.33 1.29V10.2h-2.67c.04.75 0 8.14 0 8.14h2.67v-4.55c0-.24.02-.48.09-.66.19-.48.63-.97 1.37-.97.96 0 1.35.73 1.35 1.81v4.37h2.5z"/></svg>
+            linkedin.com/in/kubragezici
+          </a>
+        </div>
+      </div>
+      <div class="footer-alt">
+        &copy; 2026 Kübra Gezici — Makine Mühendisi | Yapay Zeka
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobil menü aç/kapat
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      const acik = navLinks.classList.toggle('acik');
+      navToggle.classList.toggle('open', acik);
+      navToggle.setAttribute('aria-expanded', acik);
+    });
+
+    // Menüden bir bağlantıya tıklanınca mobil menüyü kapat
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('acik');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Kaydırınca navigasyona gölge ekle
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // Bölümler görünür oldukça yumuşak fade-in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('gorunur');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.gizli').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
