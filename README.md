@@ -1,4 +1,4 @@
-# Samsung Innovation Campus — Modül 1 / Lab 2
+# Samsung Innovation Campus — Generative AI / Chapter 1 Lab Ödevi
 
 Kişisel marka web sitesi: tek dosyalık (HTML + CSS + JavaScript) modern ve responsive bir tanıtım sayfası.
 
